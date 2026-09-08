@@ -6,6 +6,7 @@ import { LoginScreen } from "./hud/LoginScreen";
 
 export default function App() {
   const authenticated = useDeckStore((s) => s.authenticated);
+  const demoMode = useDeckStore((s) => s.demoMode);
   const loadFlows = useDeckStore((s) => s.loadFlows);
 
   // 首屏尝试恢复会话（cookie 仍在则直接载入）
@@ -14,7 +15,7 @@ export default function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  if (!authenticated) {
+  if (!authenticated && !demoMode) {
     return <LoginScreen />;
   }
 

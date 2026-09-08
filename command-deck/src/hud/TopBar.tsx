@@ -6,6 +6,8 @@ export function TopBar() {
   const activeFlow = useDeckStore((s) => s.activeFlow);
   const selectFlow = useDeckStore((s) => s.selectFlow);
   const loadFlows = useDeckStore((s) => s.loadFlows);
+  const demoMode = useDeckStore((s) => s.demoMode);
+  const leaveDemo = useDeckStore((s) => s.leaveDemo);
 
   const statusColor = activeFlow ? STATUS_COLOR[activeFlow.status] ?? "#7a8699" : "#7a8699";
 
@@ -76,6 +78,16 @@ export function TopBar() {
       >
         ⟳ 刷新
       </button>
+
+      {demoMode && (
+        <button
+          onClick={leaveDemo}
+          style={{ ...btnStyle, borderColor: "rgba(255,61,90,0.5)", color: "#ff3d5a" }}
+          title="退出演示模式"
+        >
+          ⏻ 退出演示
+        </button>
+      )}
 
       <div style={{ flex: 1 }} />
 

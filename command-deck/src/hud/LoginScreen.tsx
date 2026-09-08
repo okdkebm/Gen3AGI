@@ -5,6 +5,7 @@ export function LoginScreen() {
   const login = useDeckStore((s) => s.login);
   const loginError = useDeckStore((s) => s.loginError);
   const loading = useDeckStore((s) => s.loading);
+  const enterDemo = useDeckStore((s) => s.enterDemo);
   const [email, setEmail] = useState("admin@pentagi.com");
   const [password, setPassword] = useState("");
 
@@ -84,10 +85,33 @@ export function LoginScreen() {
           {loading ? "CONNECTING…" : "ENTER THE DECK"}
         </button>
 
+        <button
+          type="button"
+          onClick={enterDemo}
+          disabled={loading}
+          style={{
+            width: "100%",
+            padding: "10px 0",
+            marginTop: 10,
+            background: "rgba(57,255,136,0.08)",
+            color: "#39ff88",
+            border: "1px dashed rgba(57,255,136,0.5)",
+            borderRadius: 4,
+            cursor: loading ? "wait" : "pointer",
+            fontFamily: "var(--mono)",
+            fontSize: 12,
+            letterSpacing: "0.2em",
+          }}
+        >
+          ▶ 体验演示模式（免部署）
+        </button>
+
         <div style={{ color: "#5a6472", fontSize: 9, marginTop: 16, lineHeight: 1.6 }}>
           默认账号 admin@pentagi.com / admin（首次部署）
           <br />
           需先通过 PentAGI Web UI (8443) 登录一次以建立会话
+          <br />
+          未部署 PentAGI 时，可直接体验演示模式
         </div>
       </form>
     </div>
